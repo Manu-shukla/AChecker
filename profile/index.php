@@ -11,7 +11,7 @@
 /************************************************************************/
 // $Id$
 
-define('AC_INCLUDE_PATH', '../include/');
+define(AC_INCLUDE_PATH.'../include/');
 require(AC_INCLUDE_PATH.'vitals.inc.php');
 require_once(AC_INCLUDE_PATH.'classes/DAO/UsersDAO.class.php');
 
