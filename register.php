@@ -78,7 +78,9 @@ if (isset($_POST['cancel'])) {
 				$mail->Body    = _AC('email_confirmation_message', SITE_NAME, $confirmation_link)."\n\n";
 	
 				$mail->Send();
-			} else {
+				 $action['result'] = 'success';
+			} else {  
+				$action['result'] = 'error';
 				// auto login
 				$usersDAO->setLastLogin($user_id);
 				$_SESSION['user_id'] = $user_id;
