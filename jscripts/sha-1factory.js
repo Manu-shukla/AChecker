@@ -220,6 +220,10 @@ function verify_password(password1, password2)
 	{
 		err[err.length] = "PASSWORD_LENGTH";
 	}
+	if (password1.length > 15)
+	{
+		err[err.length] = "PASSWORD_LENGTH";
+	}
 	if (password1.search(/[a-zA-Z]+/) +  password1.search(/[0-9]+/) + password1.search(/[_\-\/+!@#%^$*&)(|.]+/) < 0)
 	{
 		err[err.length] = "PASSWORD_CHARS";
