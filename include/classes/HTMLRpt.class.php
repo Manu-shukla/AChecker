@@ -26,19 +26,19 @@ include_once(AC_INCLUDE_PATH.'classes/DAO/GuidelinesDAO.class.php');
 class HTMLRpt extends AccessibilityRpt {
 
 	// all private
-	var $num_of_no_decisions;                // Number of likely/potential errors that decisions have not been made
-	var $num_of_made_decisions;              // Number of likely/potential errors that decisions have been made
+	var $num_of_no_decisions,                // Number of likely/potential errors that decisions have not been made
+	    $num_of_made_decisions,             // Number of likely/potential errors that decisions have been made
 	
-	var $num_of_likely_problems_fail;        // Number of likely errors that decisions have not been made
-	var $num_of_potential_problems_fail;     // Number of potential errors that decisions have not been made
+	 $num_of_likely_problems_fail,        // Number of likely errors that decisions have not been made
+	 $num_of_potential_problems_fail,    // Number of potential errors that decisions have not been made
 	
-	var $rpt_likely_decision_made;           // The output report of the likely problems which are the ones that decisions have been made on 
-	var $rpt_potential_decision_made;        // The output report of the likely problems which are the ones that decisions have been made on
+	 $rpt_likely_decision_made,           // The output report of the likely problems which are the ones that decisions have been made on 
+	 $rpt_potential_decision_made,        // The output report of the likely problems which are the ones that decisions have been made on
 	
-	var $rpt_likely_decision_not_made;       // The output report of the likely problems which are the ones that no decisions have been made on
-	var $rpt_potential_decision_not_made;    // The output report of the likely problems which are the ones that no decisions have been made on
+	 $rpt_likely_decision_not_made,       // The output report of the likely problems which are the ones that no decisions have been made on
+	 $rpt_potential_decision_not_made,    // The output report of the likely problems which are the ones that no decisions have been made on
 	
-	var $html_problem_achecker =
+	 $html_problem_achecker =
 '      <li class="{MSG_TYPE}">
          <span class="err_type"><img src="{BASE_HREF}images/{IMG_SRC}" alt="{IMG_TYPE}" title="{IMG_TYPE}" width="15" height="15" /></span>
          <em>{LINE_TEXT} {LINE_NUMBER}, {COL_TEXT} {COL_NUMBER}</em>:
@@ -55,17 +55,17 @@ class HTMLRpt extends AccessibilityRpt {
          {DECISION}
          {CSS_CODE}
        </li>
-';
+',
 
-	var $html_image = 
+	 $html_image = 
 '<img src="{SRC}" height="{HEIGHT}" border="1" {ALT} />
-';
+',
 
-	var $html_repair = 
+	 $html_repair = 
 '         <span style="font-weight:bold">{REPAIR_LABEL}: </span>{REPAIR_DETAIL}
-';
+',
 	
-	var $html_decision_not_made = 
+	 $html_decision_not_made = 
 '<table>
   <tr>
     <td>
@@ -91,9 +91,9 @@ class HTMLRpt extends AccessibilityRpt {
     </td>
   </tr>
 </table>
-';
+',
 
-	var $html_decision_made = 
+	 $html_decision_made = 
 '<table class="form-data">
   <tr>
     <th align="left">{LABEL_QUESTION}:</th>
@@ -109,23 +109,23 @@ class HTMLRpt extends AccessibilityRpt {
   </tr>
   {REVERSE_DECISION}
 </table>
-';
+',
 
-	var $html_reverse_decision = 
+	 $html_reverse_decision = 
 '  <tr>
     <td colspan="2">
 	  <input value="{LABEL_REVERSE_DECISION}" type="submit" name="reverse[{LINE_NUM}_{COL_NUM}_{CHECK_ID}]" />
     </td>
   </tr>
-';
+',
 	
-	var $html_source = 
+	 $html_source = 
 '	<ol class="source">
 {SOURCE_CONTENT}
 	</ol>
-';
+',
 	
-	var $html_source_line =
+	 $html_source_line =
 '		<li id="line-{LINE_ID}">{LINE}</li>
 ';
 	
