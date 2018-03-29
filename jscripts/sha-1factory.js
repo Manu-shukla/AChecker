@@ -7,9 +7,9 @@
  * See http://pajhome.org.uk/crypt/md5 for details.
  */
 
-var hexcase = 0;  /* hex output format. 0 - lowercase; 1 - uppercase        */
-var b64pad  = ""; /* base-64 pad character. "=" for strict RFC compliance   */
-var chrsz   = 8;  /* bits per input character. 8 - ASCII; 16 - Unicode      */
+var hexcase = 0,  /* hex output format. 0 - lowercase; 1 - uppercase        */
+    b64pad  = "", /* base-64 pad character. "=" for strict RFC compliance   */
+    chrsz   = 8;  /* bits per input character. 8 - ASCII; 16 - Unicode      */
 
 /*
  * These are the functions you'll usually want to call
@@ -39,20 +39,20 @@ function core_sha1(x, len)
   x[len >> 5] |= 0x80 << (24 - len % 32);
   x[((len + 64 >> 9) << 4) + 15] = len;
 
-  var w = Array(80);
-  var a =  1732584193;
-  var b = -271733879;
-  var c = -1732584194;
-  var d =  271733878;
-  var e = -1009589776;
+  var w = Array(80),
+   a =  1732584193,
+   b = -271733879,
+   c = -1732584194,
+   d =  271733878,
+   e = -1009589776;
 
   for(var i = 0; i < x.length; i += 16)
   {
-    var olda = a;
-    var oldb = b;
-    var oldc = c;
-    var oldd = d;
-    var olde = e;
+    var olda = a,
+     oldb = b,
+     oldc = c,
+     oldd = d,
+     olde = e;
 
     for(var j = 0; j < 80; j++)
     {
@@ -142,9 +142,10 @@ function rol(num, cnt)
  */
 function str2binb(str)
 {
-  var bin = Array();
-  var mask = (1 << chrsz) - 1;
-  for(var i = 0; i < str.length * chrsz; i += chrsz)
+  var bin = Array(),
+  mask = (1 << chrsz) - 1,
+  j= str.length * chrsz;
+  for(var i = 0; i < j; i += chrsz)
     bin[i>>5] |= (str.charCodeAt(i / chrsz) & mask) << (24 - i%32);
   return bin;
 }
@@ -154,9 +155,10 @@ function str2binb(str)
  */
 function binb2str(bin)
 {
-  var str = "";
-  var mask = (1 << chrsz) - 1;
-  for(var i = 0; i < bin.length * 32; i += chrsz)
+  var str = "",
+      mask = (1 << chrsz) - 1,
+      k=bin.length * 32;
+  for(var i = 0; i < k i += chrsz)
     str += String.fromCharCode((bin[i>>5] >>> (24 - i%32)) & mask);
   return str;
 }
@@ -166,9 +168,10 @@ function binb2str(bin)
  */
 function binb2hex(binarray)
 {
-  var hex_tab = hexcase ? "0123456789ABCDEF" : "0123456789abcdef";
-  var str = "";
-  for(var i = 0; i < binarray.length * 4; i++)
+  var hex_tab = hexcase ? "0123456789ABCDEF" : "0123456789abcdef",
+   str = "",
+   l= binarray.length * 4;
+  for(var i = 0; i < l; i++)
   {
     str += hex_tab.charAt((binarray[i>>2] >> ((3 - i%4)*8+4)) & 0xF) +
            hex_tab.charAt((binarray[i>>2] >> ((3 - i%4)*8  )) & 0xF);
@@ -181,9 +184,10 @@ function binb2hex(binarray)
  */
 function binb2b64(binarray)
 {
-  var tab = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-  var str = "";
-  for(var i = 0; i < binarray.length * 4; i += 3)
+  var tab = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/",
+      str = "",
+      m= binarray.length * 4;
+  for(var i = 0; i < m; i += 3)
   {
     var triplet = (((binarray[i   >> 2] >> 8 * (3 -  i   %4)) & 0xFF) << 16)
                 | (((binarray[i+1 >> 2] >> 8 * (3 - (i+1)%4)) & 0xFF) << 8 )
